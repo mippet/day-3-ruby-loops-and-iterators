@@ -4,7 +4,7 @@ def print_divider
 end
 
 def print_progress_bar
-  3.times { sleep 0.5; print "." }
+  3.times { sleep 0.2; print "." }
   puts "\n"
 end
 
@@ -59,7 +59,7 @@ print_divider
 puts "see below the differtent steps to follow"
 
 steps.each_with_index do |step, index|
-  puts (index + 1).to_s + ")" + step[:description]
+  puts (index + 1).to_s + step[:description]
 end
 
 def generic_recipe_step
@@ -102,9 +102,26 @@ def break_eggs
 end
 
 def ask_if_ready(step, index)
-  puts  "are you ready for step #{index + 1}?\n (#{step[:description]}"
+  puts  "are you ready for step #{index + 1}?\n #{step[:description]}"
   answer = gets.chomp
 
   answer.upcase == "Y"
 
   end
+
+  steps.each_with_index do |step, index|
+    print_divider
+
+    loop do
+      ready = ask_if_ready(step,index)
+      break if ready
+
+      puts "ok, ik will give you some extra time."
+      print_progress_bar
+      end
+
+      send(step[:action])
+    end
+
+print_divider
+puts "listo! enjoy!"
