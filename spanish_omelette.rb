@@ -18,3 +18,22 @@ ingredients = [
   { name: 'oil', quantity: 'some' },
   { name: 'salt', quantity: 'some' },
 ]
+
+
+loop do
+  puts "\n"
+  print_diveder
+
+  puts "Got alle the ingredients you need? (N/Y)"
+  answer = gets.chomp.upcase
+
+  if answer == "N"
+    puts "need to go shopping.."
+    print_progress_bar
+  elsif answer == "Y"
+    puts "Let's starts cooking!"
+    break
+  else
+    puts "that's not a valid input. try again... "
+    end
+end
